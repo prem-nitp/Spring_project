@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,20 +14,25 @@ public class MainFrame extends JFrame{
 	public MainFrame()
 	{
 		super("Hello world");
+		setSize(600, 500);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //call this method to close the app when you click on cross mark
+		setVisible(true);
 		//setlayout
 		setLayout(new BorderLayout());
 		textarea = new JTextArea();
-		add(textarea,BorderLayout.CENTER);
 		btn = new JButton("click me");
+		
+		add(textarea,BorderLayout.CENTER);
 		add(btn,BorderLayout.SOUTH);
-		//to make apps more robust use a seprate thread to run the app 
-				SwingUtilities.invokeLater(new Runnable () {
-					public void run() {
-						setSize(600, 500);
-						setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						setVisible(true);
-					}
-				});
+		
+		btn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {  
+				// Add hello world when button got clicked.
+				textarea.append("hello world\n");
+				
+			}
+		});
 				
 	}
 
