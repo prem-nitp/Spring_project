@@ -25,7 +25,14 @@ public class MainFrame extends JFrame{
 		Tp = new TextPanel();
 		btn = new JButton("click me");
 		
-		toolbar.setTextPanel(Tp);
+		toolbar.setTextListener(new StringListener() {
+
+			@Override
+			public void StringEmitted(String text) {
+				Tp.addText(text);	
+			}
+			
+		});
 		add(toolbar,BorderLayout.NORTH);
 		add(Tp,BorderLayout.CENTER);
 		add(btn,BorderLayout.SOUTH);
