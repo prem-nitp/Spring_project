@@ -1,3 +1,5 @@
+/*This class is just for Text area in centre */
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
