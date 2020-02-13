@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame{
 	
-	private JTextArea textarea;
+	private TextPanel Tp;
 	private JButton btn;
 	public MainFrame()
 	{
@@ -19,17 +19,17 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 		//setlayout
 		setLayout(new BorderLayout());
-		textarea = new JTextArea();
+		Tp = new TextPanel();
 		btn = new JButton("click me");
 		
-		add(textarea,BorderLayout.CENTER);
+		add(Tp,BorderLayout.CENTER);
 		add(btn,BorderLayout.SOUTH);
 		
 		btn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {  
 				// Add hello world when button got clicked.
-				textarea.append("hello world\n");
+				Tp.addText("hello world");
 				
 			}
 		});
