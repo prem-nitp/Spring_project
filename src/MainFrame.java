@@ -11,6 +11,7 @@ public class MainFrame extends JFrame{
 	
 	private TextPanel Tp;
 	private JButton btn;
+	private Toolbar toolbar;
 	public MainFrame()
 	{
 		super("Hello world");
@@ -19,9 +20,12 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 		//setlayout
 		setLayout(new BorderLayout());
+		
+		toolbar = new Toolbar();
 		Tp = new TextPanel();
 		btn = new JButton("click me");
 		
+		add(toolbar,BorderLayout.NORTH);
 		add(Tp,BorderLayout.CENTER);
 		add(btn,BorderLayout.SOUTH);
 		
@@ -29,7 +33,7 @@ public class MainFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {  
 				// Add hello world when button got clicked.
-				Tp.addText("hello world");
+				Tp.addText("hello world\n");
 				
 			}
 		});
