@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame{
 	
+	//variable declaration
 	private TextPanel Tp;
 	private Toolbar toolbar;
 	private FormPanel formpanel;
@@ -22,10 +23,12 @@ public class MainFrame extends JFrame{
 		//setlayout
 		setLayout(new BorderLayout());
 		
+		//variable initialization
 		toolbar = new Toolbar();
 		Tp = new TextPanel();
 		formpanel = new FormPanel();
 		
+		//Toolbar releted activity
 		toolbar.setTextListener(new StringListener() {
 
 			@Override
@@ -34,12 +37,12 @@ public class MainFrame extends JFrame{
 			}
 			
 		});
-		
+		//Formpanel releted activity
 		formpanel.setFormListener(new FormListener() {
 
 			@Override
 			public void FormEventOccured(FormEvent ev) {
-				Tp.addText(ev.getName()+" "+ev.getOccupation()+"\n");
+				Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+""+"\n");
 			}		
 		});
 		

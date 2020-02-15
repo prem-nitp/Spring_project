@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -18,6 +20,7 @@ public class FormPanel extends JPanel {
 	private JLabel occupationLabel;
 	private JTextField nameTextField;
 	private JTextField occupationField;
+	private JList ageList;
 	private FormListener listener;
 	private JButton okBtn;
 	
@@ -31,7 +34,18 @@ public class FormPanel extends JPanel {
 		occupationLabel = new JLabel("Occupation: ");
 		nameTextField = new JTextField(10);
 		occupationField = new JTextField(10);
+		ageList = new JList();
 		okBtn = new JButton("OK");
+		
+		DefaultListModel listmodel = new DefaultListModel();
+		listmodel.addElement(new AgeCategory(0,"0  to 18"));
+		listmodel.addElement(new AgeCategory(1,"19 to 40"));
+		listmodel.addElement(new AgeCategory(2,"41  to 65"));
+		listmodel.addElement(new AgeCategory(3,"Above  65"));
+		ageList.setModel(listmodel);
+		
+		ageList.setPreferredSize(new Dimension(110,80));
+		ageList.setBorder(BorderFactory.createEtchedBorder());
 		
 		Border innerBorder = BorderFactory.createTitledBorder("Add person");
 		Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);
@@ -77,6 +91,15 @@ public class FormPanel extends JPanel {
 		gc.gridx=1;
 		gc.gridy=2;
 		gc.weightx=1;
+		gc.weighty=0.2;
+		gc.insets = new Insets(0,0,0,0);
+		gc.anchor=GridBagConstraints.FIRST_LINE_START;
+		add(ageList,gc);
+		
+		/////    Fourth row    ///////
+		gc.gridx=1;
+		gc.gridy=3;
+		gc.weightx=1;
 		gc.weighty=2;
 		gc.insets = new Insets(0,0,0,0);
 		gc.anchor=GridBagConstraints.FIRST_LINE_START;
@@ -88,8 +111,9 @@ public class FormPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String name = nameTextField.getText();
 				String occupation = occupationField.getText();
+				AgeCategory ageCat = (AgeCategory) ageList.getSelectedValue();
 				
-				FormEvent ev = new FormEvent(this,name,occupation);
+				FormEvent ev = new FormEvent(this,name,occupation,ageCat);
 				listener.FormEventOccured(ev);
 			}
 			
@@ -99,6 +123,16 @@ public class FormPanel extends JPanel {
 		
 		this.listener = listener;
 	}
-	
+}
 
+class AgeCategory{
+	int id;
+	String text;
+	public AgeCategory(int id , String text) {
+		this.id=id;
+		this.text=text;
+	}
+	public String toString() {
+		return text;
+	}
 }
