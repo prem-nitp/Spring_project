@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 public class MainFrame extends JFrame{
 	
 	private TextPanel Tp;
-	private JButton btn;
 	private Toolbar toolbar;
 	private FormPanel formpanel;
 	
@@ -25,7 +24,6 @@ public class MainFrame extends JFrame{
 		
 		toolbar = new Toolbar();
 		Tp = new TextPanel();
-		btn = new JButton("click me");
 		formpanel = new FormPanel();
 		
 		toolbar.setTextListener(new StringListener() {
@@ -39,17 +37,7 @@ public class MainFrame extends JFrame{
 		
 		add(toolbar,BorderLayout.NORTH);
 		add(Tp,BorderLayout.CENTER);
-		add(btn,BorderLayout.SOUTH);
 		add(formpanel,BorderLayout.WEST);
-		
-		btn.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {  
-				// Add hello world when button got clicked.
-				Tp.addText("hello world\n");
-				
-			}
-		});
 				
 	}
 
