@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
@@ -30,6 +32,9 @@ public class FormPanel extends JPanel {
 	private JCheckBox citizenCheck;
 	private JTextField taxField;
 	private JLabel taxLabel;
+	private JRadioButton maleRadio;
+	private JRadioButton femaleRadio;
+	private ButtonGroup genderGroup;
 	
 	
 	public FormPanel()
@@ -50,6 +55,16 @@ public class FormPanel extends JPanel {
 		//disable the texField and TaxLabel by default enable when citizen checkbox is checked
 		taxField.setVisible(false);
 		taxLabel.setVisible(false);
+		
+		//Gender related
+		maleRadio = new JRadioButton();
+		femaleRadio = new JRadioButton();
+		maleRadio.setText("Male");
+		femaleRadio.setText("Female");
+		maleRadio.setSelected(true);
+		genderGroup = new ButtonGroup();
+		genderGroup.add(maleRadio);
+		genderGroup.add(femaleRadio);
 		
 		okBtn = new JButton("OK");
 		
@@ -99,10 +114,12 @@ public class FormPanel extends JPanel {
 				String occupation = occupationField.getText();
 				AgeCategory ageCat = (AgeCategory) ageList.getSelectedValue();
 				String emp = (String) empCat.getSelectedItem();
-				String taxid = taxField.getText();
-				boolean isChecked = citizenCheck.isSelected();
+				String taxId = taxField.getText();
+				boolean checked = citizenCheck.isSelected();
 				
-				FormEvent ev = new FormEvent(this,name,occupation,emp,ageCat);
+				FormEvent ev = new FormEvent(this,name,occupation,emp,checked,taxId,ageCat);
+				
+				if (listener!=null)
 				listener.FormEventOccured(ev);
 			}
 			
@@ -215,7 +232,33 @@ public void setComponents() {
 	gc.anchor=GridBagConstraints.FIRST_LINE_START;
 	add(taxField,gc);
 	
-	/////    Fifth row   ///////
+/////    seventh row    ///////
+	gc.gridy++;
+	gc.weighty=0.05;
+	
+	gc.gridx=0;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,5);
+	gc.anchor=GridBagConstraints.FIRST_LINE_END;
+	add(new JLabel("Gender:"),gc);
+	
+	gc.gridx=1;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,0);
+	gc.anchor=GridBagConstraints.FIRST_LINE_START;
+	add(maleRadio,gc);
+	
+/////    Eighth row    ///////
+	gc.gridy++;
+	gc.weighty=0.2;
+	
+	gc.gridx=1;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,0);
+	gc.anchor=GridBagConstraints.FIRST_LINE_START;
+	add(femaleRadio,gc);
+	
+	/////    Ninth row   ///////
 	gc.gridy++;
 	gc.weighty=2;
 	

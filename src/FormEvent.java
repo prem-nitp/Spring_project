@@ -7,19 +7,29 @@ public class FormEvent extends EventObject {
 	String empCategory;
 	AgeCategory ageCat;
 	String taxId;
-	boolean ischecked;
+	boolean Checked;
 	
 	
 	public FormEvent(Object source) {
 		 super(source);
 	}
-	public FormEvent(Object source,String name, String occupation,String empCategory,boolean taxId AgeCategory ageCat){
+	public FormEvent(Object source,String name, String occupation,String empCategory,boolean Checked, String taxId,
+			AgeCategory ageCat){
 		super(source);
 		this.name=name;
 		this.occupation=occupation;
 		this.empCategory=empCategory;
 		this.ageCat= ageCat;
+		this.Checked = Checked;
+		this.taxId = taxId;
 		
+		
+	}
+	public String getTaxId() {
+		return taxId;
+	}
+	public boolean isChecked() {
+		return Checked;
 	}
 	public String getEmpCategory() {
 		return this.empCategory;
