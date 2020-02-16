@@ -6,12 +6,14 @@ public class FormEvent extends EventObject {
 	String occupation;
 	String empCategory;
 	AgeCategory ageCat;
+	String taxId;
+	boolean ischecked;
 	
 	
 	public FormEvent(Object source) {
 		 super(source);
 	}
-	public FormEvent(Object source,String name, String occupation,String empCategory, AgeCategory ageCat){
+	public FormEvent(Object source,String name, String occupation,String empCategory,boolean taxId AgeCategory ageCat){
 		super(source);
 		this.name=name;
 		this.occupation=occupation;

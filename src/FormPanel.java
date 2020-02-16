@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,6 +27,10 @@ public class FormPanel extends JPanel {
 	private FormListener listener;
 	private JButton okBtn;
 	private JComboBox empCat;
+	private JCheckBox citizenCheck;
+	private JTextField taxField;
+	private JLabel taxLabel;
+	
 	
 	public FormPanel()
 	{
@@ -39,6 +44,13 @@ public class FormPanel extends JPanel {
 		occupationField = new JTextField(10);
 		ageList = new JList();
 		empCat = new JComboBox();
+		citizenCheck = new JCheckBox();
+		taxField = new JTextField(10);
+		taxLabel = new JLabel("Tax ID:");
+		//disable the texField and TaxLabel by default enable when citizen checkbox is checked
+		taxField.setVisible(false);
+		taxLabel.setVisible(false);
+		
 		okBtn = new JButton("OK");
 		
 		//set Jlist
@@ -65,6 +77,20 @@ public class FormPanel extends JPanel {
 		Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);
 		setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
 		
+		//citizen checkbox listener
+		citizenCheck.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean isChecked = citizenCheck.isSelected();
+				// set visible of taxfield and taxLabel depending on the citizenCheck
+				taxField.setVisible(isChecked);
+				taxLabel.setVisible(isChecked);
+				
+			}
+			
+		});
+		//ok button Listener
 		okBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -73,6 +99,8 @@ public class FormPanel extends JPanel {
 				String occupation = occupationField.getText();
 				AgeCategory ageCat = (AgeCategory) ageList.getSelectedValue();
 				String emp = (String) empCat.getSelectedItem();
+				String taxid = taxField.getText();
+				boolean isChecked = citizenCheck.isSelected();
 				
 				FormEvent ev = new FormEvent(this,name,occupation,emp,ageCat);
 				listener.FormEventOccured(ev);
@@ -154,6 +182,38 @@ public void setComponents() {
 	gc.insets = new Insets(0,0,0,0);
 	gc.anchor=GridBagConstraints.FIRST_LINE_START;
 	add(empCat,gc);
+	
+/////    Fifth row    ///////
+	gc.gridy++;
+	gc.weighty=0.2;
+	
+	gc.gridx=0;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,5);
+	gc.anchor=GridBagConstraints.FIRST_LINE_END;
+	add(new JLabel("Indian Citizen:"),gc);
+	
+	gc.gridx=1;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,0);
+	gc.anchor=GridBagConstraints.FIRST_LINE_START;
+	add(citizenCheck,gc);
+	
+/////    sixth row    ///////
+	gc.gridy++;
+	gc.weighty=0.2;
+	
+	gc.gridx=0;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,5);
+	gc.anchor=GridBagConstraints.FIRST_LINE_END;
+	add(taxLabel,gc);
+	
+	gc.gridx=1;
+	gc.weightx=1;
+	gc.insets = new Insets(0,0,0,0);
+	gc.anchor=GridBagConstraints.FIRST_LINE_START;
+	add(taxField,gc);
 	
 	/////    Fifth row   ///////
 	gc.gridy++;
