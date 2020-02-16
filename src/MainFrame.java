@@ -1,12 +1,15 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 public class MainFrame extends JFrame{
 	
@@ -74,6 +77,21 @@ public class MainFrame extends JFrame{
 		
 		menuBar.add(fileMenu);
 		menuBar.add(windowMenu);
+		
+		exitItem.setMnemonic(KeyEvent.VK_X);
+		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,ActionEvent.CTRL_MASK));
+		exitItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int action = JOptionPane.showConfirmDialog(MainFrame.this, "Do you Really want to exit","Confirm Exit",
+						JOptionPane.OK_CANCEL_OPTION);
+				if(action==JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}
+			}
+			
+		});
 		
 		showFormItem.addActionListener(new ActionListener() {
 
