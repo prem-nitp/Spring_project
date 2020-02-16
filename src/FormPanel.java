@@ -14,6 +14,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -32,6 +34,7 @@ public class FormPanel extends JPanel {
 	private JCheckBox citizenCheck;
 	private JTextField taxField;
 	private JLabel taxLabel;
+	
 	private JRadioButton maleRadio;
 	private JRadioButton femaleRadio;
 	private ButtonGroup genderGroup;

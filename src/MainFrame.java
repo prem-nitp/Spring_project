@@ -1,11 +1,9 @@
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class MainFrame extends JFrame{
 	
@@ -27,6 +25,7 @@ public class MainFrame extends JFrame{
 		toolbar = new Toolbar();
 		Tp = new TextPanel();
 		formpanel = new FormPanel();
+		setJMenuBar(createMenuBar());
 		
 		//Toolbar releted activity
 		toolbar.setTextListener(new StringListener() {
@@ -50,6 +49,28 @@ public class MainFrame extends JFrame{
 		add(Tp,BorderLayout.CENTER);
 		add(formpanel,BorderLayout.WEST);
 				
+	}
+	private JMenuBar createMenuBar() {
+		
+		JMenuBar menuBar= new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
+		JMenu windowMenu = new JMenu("Window");
+		JMenuItem exportDataItem = new JMenuItem("Export Data..");
+		JMenuItem importDataItem = new JMenuItem("Import Data..");
+		JMenuItem exitItem = new JMenuItem("Exit");
+		fileMenu.add(importDataItem);
+		fileMenu.add(exportDataItem);
+		fileMenu.add(exitItem);
+		
+		JMenu showMenu = new JMenu("Show");
+		JMenuItem personDataItem = new JMenuItem("PersonForm");
+		showMenu.add(personDataItem);
+		windowMenu.add(showMenu);
+		
+		menuBar.add(fileMenu);
+		menuBar.add(windowMenu);
+		
+		return menuBar;
 	}
 
 }
