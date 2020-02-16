@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -58,17 +61,29 @@ public class MainFrame extends JFrame{
 		JMenuItem exportDataItem = new JMenuItem("Export Data..");
 		JMenuItem importDataItem = new JMenuItem("Import Data..");
 		JMenuItem exitItem = new JMenuItem("Exit");
+		
 		fileMenu.add(importDataItem);
 		fileMenu.add(exportDataItem);
 		fileMenu.add(exitItem);
 		
 		JMenu showMenu = new JMenu("Show");
-		JMenuItem personDataItem = new JMenuItem("PersonForm");
-		showMenu.add(personDataItem);
+		JCheckBoxMenuItem showFormItem =  new JCheckBoxMenuItem("PersonForm");
+		showFormItem.setSelected(true);
+		showMenu.add(showFormItem);
 		windowMenu.add(showMenu);
 		
 		menuBar.add(fileMenu);
 		menuBar.add(windowMenu);
+		
+		showFormItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) e.getSource();
+				formpanel.setVisible(menuItem.isSelected());
+			}
+			
+		});
 		
 		return menuBar;
 	}
