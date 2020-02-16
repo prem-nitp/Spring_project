@@ -57,10 +57,11 @@ public class FormPanel extends JPanel {
 		taxLabel.setVisible(false);
 		
 		//Gender related
-		maleRadio = new JRadioButton();
-		femaleRadio = new JRadioButton();
-		maleRadio.setText("Male");
-		femaleRadio.setText("Female");
+		maleRadio = new JRadioButton("Male");
+		femaleRadio = new JRadioButton("Female");
+		//To extract the text from the radio button when it would be selected
+		maleRadio.setActionCommand("Male");
+		femaleRadio.setActionCommand("Female");
 		maleRadio.setSelected(true);
 		genderGroup = new ButtonGroup();
 		genderGroup.add(maleRadio);
@@ -116,8 +117,9 @@ public class FormPanel extends JPanel {
 				String emp = (String) empCat.getSelectedItem();
 				String taxId = taxField.getText();
 				boolean checked = citizenCheck.isSelected();
+				String gender = (String) genderGroup.getSelection().getActionCommand();
 				
-				FormEvent ev = new FormEvent(this,name,occupation,emp,checked,taxId,ageCat);
+				FormEvent ev = new FormEvent(this,name,occupation,emp,checked,taxId,gender,ageCat);
 				
 				if (listener!=null)
 				listener.FormEventOccured(ev);

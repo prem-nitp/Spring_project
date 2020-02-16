@@ -8,13 +8,14 @@ public class FormEvent extends EventObject {
 	AgeCategory ageCat;
 	String taxId;
 	boolean Checked;
+	String gender;
 	
 	
 	public FormEvent(Object source) {
 		 super(source);
 	}
 	public FormEvent(Object source,String name, String occupation,String empCategory,boolean Checked, String taxId,
-			AgeCategory ageCat){
+			String gender,AgeCategory ageCat){
 		super(source);
 		this.name=name;
 		this.occupation=occupation;
@@ -22,8 +23,12 @@ public class FormEvent extends EventObject {
 		this.ageCat= ageCat;
 		this.Checked = Checked;
 		this.taxId = taxId;
+		this.gender=gender;
 		
 		
+	}
+	public String getGender() {
+		return gender;
 	}
 	public String getTaxId() {
 		return taxId;
