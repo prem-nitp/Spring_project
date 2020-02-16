@@ -42,7 +42,7 @@ public class MainFrame extends JFrame{
 
 			@Override
 			public void FormEventOccured(FormEvent ev) {
-				Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+""+"\n");
+				Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+ev.getEmpCategory()+""+"\n");
 			}		
 		});
 		

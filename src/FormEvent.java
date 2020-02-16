@@ -4,17 +4,23 @@ public class FormEvent extends EventObject {
 
 	String name;
 	String occupation;
+	String empCategory;
 	AgeCategory ageCat;
+	
 	
 	public FormEvent(Object source) {
 		 super(source);
 	}
-	public FormEvent(Object source,String name, String occupation,AgeCategory ageCat){
+	public FormEvent(Object source,String name, String occupation,String empCategory, AgeCategory ageCat){
 		super(source);
 		this.name=name;
 		this.occupation=occupation;
+		this.empCategory=empCategory;
 		this.ageCat= ageCat;
 		
+	}
+	public String getEmpCategory() {
+		return this.empCategory;
 	}
 	public int getAgeCat() {
 		return ageCat.id;
