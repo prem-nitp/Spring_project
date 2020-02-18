@@ -2,8 +2,10 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -17,6 +19,7 @@ public class MainFrame extends JFrame{
 	private TextPanel Tp;
 	private Toolbar toolbar;
 	private FormPanel formpanel;
+	private JFileChooser fileChooser;
 	
 	public MainFrame()
 	{
@@ -64,6 +67,7 @@ public class MainFrame extends JFrame{
 		JMenuItem exportDataItem = new JMenuItem("Export Data..");
 		JMenuItem importDataItem = new JMenuItem("Import Data..");
 		JMenuItem exitItem = new JMenuItem("Exit");
+		fileChooser = new JFileChooser();
 		
 		fileMenu.add(importDataItem);
 		fileMenu.add(exportDataItem);
@@ -91,6 +95,28 @@ public class MainFrame extends JFrame{
 				}
 			}
 			
+		});
+		importDataItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(fileChooser.showOpenDialog(MainFrame.this)==JFileChooser.APPROVE_OPTION) {
+					System.out.println(fileChooser.getSelectedFile());
+					//File f = fileChooser.getSelectedFile();  //just for test
+					//System.out.println(f);
+				}
+				
+			}
+		});
+		exportDataItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(fileChooser.showSaveDialog(MainFrame.this)==JFileChooser.APPROVE_OPTION) {
+					System.out.println(fileChooser.getSelectedFile());
+				}
+				
+			}
 		});
 		
 		showFormItem.addActionListener(new ActionListener() {
