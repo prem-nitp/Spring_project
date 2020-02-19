@@ -130,7 +130,7 @@ public class FormPanel extends JPanel {
 			}
 			
 		});
-		//calling setcomponents function to set the all other components in Formpnel
+		//calling setcomponents function to set the all other components in FormPanel
 		setComponents();
 	}
 	public void setFormListener(FormListener listener) {

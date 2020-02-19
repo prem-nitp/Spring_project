@@ -14,6 +14,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.Controller;
+
 public class MainFrame extends JFrame{
 	
 	//variable declaration
@@ -22,13 +24,16 @@ public class MainFrame extends JFrame{
 	private FormPanel formpanel;
 	private JFileChooser fileChooser;
 	
+	private Controller controller;
+	
 	public MainFrame()
 	{
 		super("Hello world");
 		setSize(600, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //call this method to close the app when you click on cross mark
 		setVisible(true);
-		//setlayout
+		
+		//setLayout
 		setLayout(new BorderLayout());
 		
 		//variable initialization
@@ -37,7 +42,9 @@ public class MainFrame extends JFrame{
 		formpanel = new FormPanel();
 		setJMenuBar(createMenuBar());
 		
-		//Toolbar releted activity
+		controller = new Controller();
+		
+		//ToolBar related activity
 		toolbar.setTextListener(new StringListener() {
 
 			@Override
@@ -46,15 +53,17 @@ public class MainFrame extends JFrame{
 			}
 			
 		});
-		//Formpanel releted activity
+		//FormPanel related activity
 		formpanel.setFormListener(new FormListener() {
 
 			@Override
 			public void FormEventOccured(FormEvent ev) {
-				Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+ev.getEmpCategory()+""+"\n");
+				//Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+ev.getEmpCategory()+""+"\n");
+				controller.addPerson(ev);
 			}		
 		});
 		
+		//Add different component to MainFrame which extends JFrame
 		add(toolbar,BorderLayout.NORTH);
 		add(Tp,BorderLayout.CENTER);
 		add(formpanel,BorderLayout.WEST);

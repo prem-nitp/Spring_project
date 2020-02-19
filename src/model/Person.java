@@ -2,6 +2,8 @@ package model;
 
 public class Person {
 	
+	
+	int id;
 	String name;
 	String occupation;
 	EmploymentCategory employmentCategory;
