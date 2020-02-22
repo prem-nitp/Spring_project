@@ -2,7 +2,7 @@ package model;
 
 public class Person {
 	
-	
+	private static int count =0;
 	int id;
 	String name;
 	String occupation;
@@ -22,6 +22,16 @@ public class Person {
 		this.taxId=taxId;
 		this.indianCitizen=indianCitizen;
 		this.gender=gender;
+		count++;
+		this.id =count;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

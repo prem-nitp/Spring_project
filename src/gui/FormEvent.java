@@ -3,9 +3,7 @@ import java.util.EventObject;
 
 public class FormEvent extends EventObject {
 
-	private static int count=0;
 	
-	private int id;
 	private String name;
 	private String occupation;
 	private String empCategory;
@@ -28,8 +26,6 @@ public class FormEvent extends EventObject {
 		this.Checked = Checked;
 		this.taxId = taxId;
 		this.gender=gender;
-		count++;
-		this.id=count;
 		
 	}
 	public String getGender() {
@@ -45,7 +41,7 @@ public class FormEvent extends EventObject {
 		return this.empCategory;
 	}
 	public int getAgeCat() {
-		return ageCat.id;
+		return ageCat.getAgeID();
 	}
 	public void setAgeCat(AgeCategory ageCat) {
 		this.ageCat = ageCat;

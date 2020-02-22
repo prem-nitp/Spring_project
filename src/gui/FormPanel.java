@@ -22,6 +22,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import controller.Controller;
+
 public class FormPanel extends JPanel {
 	
 	private JLabel nameLabel;
@@ -39,6 +41,7 @@ public class FormPanel extends JPanel {
 	private JRadioButton maleRadio;
 	private JRadioButton femaleRadio;
 	private ButtonGroup genderGroup;
+	private Controller controller;
 	
 	
 	public FormPanel()
@@ -57,8 +60,7 @@ public class FormPanel extends JPanel {
 		taxField = new JTextField(10);
 		taxLabel = new JLabel("Tax ID:");
 		//disable the texField and TaxLabel by default enable when citizen checkbox is checked
-		taxField.setVisible(false);
-		taxLabel.setVisible(false);
+		taxField.setEditable(false);
 		
 		//Gender related
 		maleRadio = new JRadioButton("Male");
@@ -80,6 +82,7 @@ public class FormPanel extends JPanel {
 		listmodel.addElement(new AgeCategory(2,"41  to 65"));
 		listmodel.addElement(new AgeCategory(3,"Above  65"));
 		ageList.setModel(listmodel);
+		ageList.setSelectedIndex(0);
 		
 		//set JComboBox
 		DefaultComboBoxModel empModel = new DefaultComboBoxModel();
@@ -104,8 +107,12 @@ public class FormPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				boolean isChecked = citizenCheck.isSelected();
 				// set visible of taxfield and taxLabel depending on the citizenCheck
-				taxField.setVisible(isChecked);
-				taxLabel.setVisible(isChecked);
+				if(!isChecked) {
+					taxField.setText(null);
+				}
+				taxField.setEditable(isChecked);
+				
+			//	taxLabel.setVisible(isChecked);
 				
 			}
 			
@@ -123,6 +130,7 @@ public class FormPanel extends JPanel {
 				boolean checked = citizenCheck.isSelected();
 				String gender = (String) genderGroup.getSelection().getActionCommand();
 				
+				System.out.println(ageCat);
 				FormEvent ev = new FormEvent(this,name,occupation,emp,checked,taxId,gender,ageCat);
 				
 				if (listener!=null)
@@ -279,7 +287,7 @@ public void setComponents() {
 }
 
 class AgeCategory{
-	int id;
+	private int id;
 	String text;
 	public AgeCategory(int id , String text) {
 		this.id=id;
@@ -287,5 +295,9 @@ class AgeCategory{
 	}
 	public String toString() {
 		return text;
+	}
+	public int getAgeID() {
+		
+		return id;
 	}
 }

@@ -22,6 +22,7 @@ public class MainFrame extends JFrame{
 	private TextPanel Tp;
 	private Toolbar toolbar;
 	private FormPanel formpanel;
+	private TablePanel tablePanel;
 	private JFileChooser fileChooser;
 	
 	private Controller controller;
@@ -44,6 +45,9 @@ public class MainFrame extends JFrame{
 		
 		controller = new Controller();
 		
+		tablePanel = new TablePanel();
+		tablePanel.setData(controller.getPerson());
+		
 		//ToolBar related activity
 		toolbar.setTextListener(new StringListener() {
 
@@ -59,14 +63,16 @@ public class MainFrame extends JFrame{
 			@Override
 			public void FormEventOccured(FormEvent ev) {
 				//Tp.addText(ev.getName()+" "+ev.getOccupation()+" "+ev.getAgeCat()+ev.getEmpCategory()+""+"\n");
+				tablePanel.refresh();
 				controller.addPerson(ev);
 			}		
 		});
 		
 		//Add different component to MainFrame which extends JFrame
 		add(toolbar,BorderLayout.NORTH);
-		add(Tp,BorderLayout.CENTER);
+		//add(Tp,BorderLayout.CENTER);
 		add(formpanel,BorderLayout.WEST);
+		add(tablePanel,BorderLayout.CENTER);
 				
 	}
 	private JMenuBar createMenuBar() {
