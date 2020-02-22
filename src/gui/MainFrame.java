@@ -116,11 +116,20 @@ public class MainFrame extends JFrame{
 		importDataItem.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent ev) {
 				if(fileChooser.showOpenDialog(MainFrame.this)==JFileChooser.APPROVE_OPTION) {
-					System.out.println(fileChooser.getSelectedFile());
-					//File f = fileChooser.getSelectedFile();  //just for test
-					//System.out.println(f);
+					
+					try{
+						File file = fileChooser.getSelectedFile();
+						tablePanel.refresh();
+						controller.LoadFromFile(file);
+						
+					}catch (Exception e) {
+						
+						JOptionPane.showMessageDialog(MainFrame.this, "Couldn't load data from file","Error"
+								,JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}
 				
 			}
@@ -128,9 +137,17 @@ public class MainFrame extends JFrame{
 		exportDataItem.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent ev) {
 				if(fileChooser.showSaveDialog(MainFrame.this)==JFileChooser.APPROVE_OPTION) {
-					System.out.println(fileChooser.getSelectedFile());
+					
+					try{
+						File file = fileChooser.getSelectedFile();
+						controller.saveToFile(file);
+						
+					}catch (Exception e) {
+						
+						JOptionPane.showMessageDialog(MainFrame.this, "Couldn't save data to file");
+					}
 				}
 				
 			}

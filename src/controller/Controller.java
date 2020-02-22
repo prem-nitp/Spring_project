@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.rmi.server.LoaderHandler;
 import java.util.List;
 
 import gui.FormEvent;
@@ -66,12 +70,21 @@ public class Controller {
 			employmentCategory = EmploymentCategory.UNEMPLOYED;
 		}
 		else {
-			employmentCategory =EmploymentCategory.OTHER;
+			employmentCategory = EmploymentCategory.OTHER;
 		}
 			
 		
 		Person person = new Person(name, occupation, employmentCategory, ageCategory, taxId, indianCitizen, gender);
 		database.addPerson(person);
+	}
+	public void saveToFile(File file) {
+		
+		database.saveTofile(file);
+	}
+	
+	public void LoadFromFile(File file) throws IOException {
+		
+		database.loadFromFile(file);
 	}
 
 }
