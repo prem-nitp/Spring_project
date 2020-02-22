@@ -101,6 +101,10 @@ public class MainFrame extends JFrame{
 		
 		exitItem.setMnemonic(KeyEvent.VK_X);
 		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,ActionEvent.CTRL_MASK));
+		
+		//Added accelerator for importDataItem
+		importDataItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,ActionEvent.CTRL_MASK));
+		
 		exitItem.addActionListener(new ActionListener() {
 
 			@Override
