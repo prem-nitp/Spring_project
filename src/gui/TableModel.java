@@ -31,7 +31,7 @@ public class TableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int row, int col) {
 
-		System.out.println(row+" "+col);
+		//System.out.println(row+" "+col);
 		Person person = db.get(row);
 		switch(col) {
 		case 0:

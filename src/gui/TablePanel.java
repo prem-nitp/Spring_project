@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.PopupMenu;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -38,10 +40,23 @@ public class TablePanel extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
 				if(e.getButton()==MouseEvent.BUTTON3) {
+					int row = table.rowAtPoint(e.getPoint());
+					
+					table.getSelectionModel().setSelectionInterval(row, row);
+					
 					popup.show(table, e.getX(), e.getY());
 				}
 			}
 			
+		});
+		removeItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				System.out.println(row);
+				
+			}
 		});
 		setLayout(new BorderLayout());
 		add(new JScrollPane(table),BorderLayout.CENTER);
