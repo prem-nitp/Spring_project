@@ -86,5 +86,9 @@ public class Controller {
 		
 		database.loadFromFile(file);
 	}
+	public void removePerson(int row) {
+		database.removeIndex(row);
+		
+	}
 
 }

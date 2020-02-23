@@ -9,13 +9,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Database {
-	public ArrayList<Person> people;
+	public LinkedList<Person> people;
 	
 	public Database() {
-		people = new ArrayList<Person>();
+		people = new LinkedList<Person>();
 	}
 	
 	public void addPerson(Person person) {
@@ -57,6 +58,11 @@ public class Database {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
+		
+	}
+
+	public void removeIndex(int index) {
+		people.remove(index);
 		
 	}
 

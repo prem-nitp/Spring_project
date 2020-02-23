@@ -67,6 +67,14 @@ public class MainFrame extends JFrame{
 				controller.addPerson(ev);
 			}		
 		});
+		tablePanel.setDeleteRow(new DeleteRowListener() {
+			
+			@Override
+			public void deleteRow(int row) {
+				controller.removePerson(row);
+				System.out.println(row);
+			}
+		});
 		
 		//Add different component to MainFrame which extends JFrame
 		add(toolbar,BorderLayout.NORTH);

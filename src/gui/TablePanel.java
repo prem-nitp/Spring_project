@@ -24,6 +24,7 @@ public class TablePanel extends JPanel {
 	private JTable table;
 	private TableModel tableModel;
 	private JPopupMenu popup;
+	private DeleteRowListener deleteRowListener;
 	
 	public TablePanel() {
 		
@@ -54,8 +55,9 @@ public class TablePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				System.out.println(row);
-				
+				//System.out.println(row);
+				deleteRowListener.deleteRow(row);	
+				tableModel.fireTableRowsDeleted(row, row);
 			}
 		});
 		setLayout(new BorderLayout());
@@ -70,6 +72,11 @@ public class TablePanel extends JPanel {
 
 	public void refresh() {
 		tableModel.fireTableDataChanged();
+		
+	}
+
+	public void setDeleteRow(DeleteRowListener deleteRowListener) {
+		this.deleteRowListener=deleteRowListener;
 		
 	}
 
