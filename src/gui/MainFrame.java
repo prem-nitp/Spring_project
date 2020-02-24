@@ -24,6 +24,7 @@ public class MainFrame extends JFrame{
 	private FormPanel formpanel;
 	private TablePanel tablePanel;
 	private JFileChooser fileChooser;
+	private SetPrefsDialog prefsDialog;
 	
 	private Controller controller;
 	
@@ -47,6 +48,8 @@ public class MainFrame extends JFrame{
 		
 		tablePanel = new TablePanel();
 		tablePanel.setData(controller.getPerson());
+		
+		prefsDialog = new  SetPrefsDialog(this);
 		
 		//ToolBar related activity
 		toolbar.setTextListener(new StringListener() {
@@ -91,6 +94,9 @@ public class MainFrame extends JFrame{
 		JMenuItem exportDataItem = new JMenuItem("Export Data..");
 		JMenuItem importDataItem = new JMenuItem("Import Data..");
 		JMenuItem exitItem = new JMenuItem("Exit");
+		
+		JMenuItem prefsItem = new JMenuItem("Preferences...");
+		
 		fileChooser = new JFileChooser();
 		fileChooser.addChoosableFileFilter(new PersonFileFilter());
 		
@@ -101,8 +107,10 @@ public class MainFrame extends JFrame{
 		JMenu showMenu = new JMenu("Show");
 		JCheckBoxMenuItem showFormItem =  new JCheckBoxMenuItem("PersonForm");
 		showFormItem.setSelected(true);
+		
 		showMenu.add(showFormItem);
 		windowMenu.add(showMenu);
+		windowMenu.add(prefsItem);
 		
 		menuBar.add(fileMenu);
 		menuBar.add(windowMenu);
@@ -173,6 +181,15 @@ public class MainFrame extends JFrame{
 				formpanel.setVisible(menuItem.isSelected());
 			}
 			
+		});
+		
+		prefsItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				prefsDialog.setVisible(true);
+				
+			}
 		});
 		
 		return menuBar;
